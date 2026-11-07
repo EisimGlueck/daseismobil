@@ -158,6 +158,8 @@ p { margin: 0; }
 .price small { display: block; font: 400 12px/1.3 var(--f-body); color: var(--ink-soft); margin-top: 3px; }
 .card .btn { padding: 11px 16px; font-size: 15px; }
 .cards-more { margin-top: 22px; background: var(--ink); color: #fff; border-radius: 10px; padding: 26px 28px; display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+.pickup { margin-top: 16px; font-size: 15px; color: var(--ink-soft); }
+.pickup::before { content: "✓"; color: var(--gold-deep); font-weight: 700; margin-right: 8px; }
 .cards-more h3 { color: #fff; font-size: 24px; }
 .cards-more p { color: #e9dccb; margin-top: 4px; }
 .price-note { margin-top: 14px; font-size: 13px; color: var(--ink-soft); }
@@ -253,7 +255,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       <ul class="kurs-list">
         <li>Kreiere deine eigene Eissorte passend zum Monatsmotto.</li>
         <li>Werde selbst zum Eismacher, von den Zutaten bis zum fertigen Eis.</li>
-        <li>Starte mit einem Glas Sekt und genieße kleine Häppchen zwischendurch.</li>
+        <li>Starte mit einem Glas Sekt (gern auch alkoholfrei) und genieße kleine Häppchen zwischendurch.</li>
         <li>Nimm dein selbst gemachtes Eis und deine persönliche Eis-Urkunde mit nach Hause.</li>
         <li>Auch als Gutschein erhältlich: ein besonderes Geschenk für Eisliebhaber.</li>
       </ul>
@@ -321,7 +323,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
         <span class="ribbon">Glücksbox</span>
         <figure><img src="bilder/gluecksbox.png" alt="Glücksbox" loading="lazy"></figure>
         <p>Kleines Gerät, großes Eisglück! Unsere mobile Glücksbox hält deine Glücksbecher auch ohne Steckdose schön kalt.</p>
-        <ul><li>Bis zu 1 Tag autark</li><li>Auf Rädern flexibel einsetzbar</li><li>Gefüllt mit Glücksbechern</li></ul>
+        <ul><li>Bis zu 8 Stunden autark</li><li>Auf Rädern flexibel einsetzbar</li><li>Gefüllt mit Glücksbechern</li></ul>
         <div class="foot"><div class="price">Individuelles Angebot auf Anfrage</div><a class="btn btn-line" href="#anfrage" data-paket="Glücksbox">Anfragen</a></div>
       </article>
       <article class="card">
@@ -343,6 +345,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       <div><h3>Sondercatering</h3><p>Du hast eine besondere Idee? Wir haben das passende Eisglück dazu! Ob Messe, Firmenfeier oder außergewöhnliches Event: Gemeinsam machen wir etwas Besonderes daraus.</p></div>
       <a class="btn btn-gold" href="#anfrage" data-paket="Sondercatering">Gemeinsam planen</a>
     </div>
+    <p class="pickup">Tischvitrine, Glückstonne und Glücksbox kannst du auch selbst bei uns abholen. So sparst du dir die Lieferkosten.</p>
   </div>
 </section>
 
@@ -390,6 +393,13 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
         <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required></label>
         <label for="f-mail">E-Mail<input id="f-mail" name="email" type="email" autocomplete="email" required></label>
       </div>
+      <label for="f-liefer">Lieferung oder Abholung?
+        <select id="f-liefer" name="lieferung">
+          <option>Bitte liefern</option>
+          <option>Ich hole selbst ab</option>
+          <option>Weiß ich noch nicht</option>
+        </select>
+      </label>
       <label for="f-ort">Veranstaltungsort<input id="f-ort" name="ort" placeholder="Straße, Ort"></label>
       <label for="f-text">Nachricht<textarea id="f-text" name="nachricht" placeholder="Anlass, Wunschsorten, Fragen …"></textarea></label>
       <button class="btn btn-gold" type="submit">Unverbindlich anfragen</button>
