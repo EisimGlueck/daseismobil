@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Das Eismobil</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Eis-Workshops und Eis-Catering von Eis im Glück aus Nürnberg: Eismobil, Eis-Cycle, Glückstonne, Glücksbox, Tischvitrine und mehr.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;700&family=Lobster+Two:ital,wght@1,700&display=swap">
+<style>
+/* Layout: goldene Kopfleiste wie eisimglueck.de → Startbereich mit Eismobil → Eis-Kurse (jetzt buchbar) → Catering-Kacheln mit Banderolen → Ablauf → Anfrage → Kontakt.
+   Bewusst nur helles Design, passend zur Marke. Farben aus eisimglueck.de (#ca9e67). */
+:root {
+  color-scheme: light;
+  --gold: #ca9e67;        /* Markenfarbe eisimglueck.de */
+  --gold-deep: #9a6e3a;   /* Text-Gold, gut lesbar auf Creme */
+  --gold-tint: #f3e6d3;
+  --cream: #fbf6ef;
+  --paper: #ffffff;
+  --ink: #3b2a1c;         /* warmes Dunkelbraun */
+  --ink-soft: #6f5a47;
+  --line: #e8d9c4;
+  --ok: #4f7a3a;  --ok-bg: #e7f0de;
+  --low: #a8661a; --low-bg: #fbecd6;
+  --full: #8a4b4b; --full-bg: #f3e1e1;
+  --f-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --f-body: "Karla", "Helvetica Neue", Arial, sans-serif;
+  --f-logo: "Lobster Two", Georgia, serif;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { margin: 0; background: var(--cream); color: var(--ink); font: 400 17px/1.6 var(--f-body); overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--gold); }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.12; text-wrap: balance; margin: 0; color: var(--ink); }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--gold-deep); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: 1140px; margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.band { padding-block: 88px; }
+.eyebrow { font: 700 13px/1 var(--f-body); letter-spacing: .16em; text-transform: uppercase; color: var(--gold-deep); }
+.lead { font-size: 18px; color: var(--ink-soft); max-width: 58ch; }
+.head { display: grid; gap: 14px; margin-bottom: 44px; }
+.head h2 { font-size: clamp(30px, 4vw, 44px); }
+
+/* Banderole wie auf den Illustrationen */
+.ribbon {
+  display: inline-block; background: var(--gold); color: #fff;
+  font: 700 15px/1 var(--f-body); letter-spacing: .02em; padding: 9px 30px;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 13px) 50%, 100% 100%, 0 100%, 13px 50%);
+}
+
+.btn { display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: 6px; padding: 14px 24px; font: 700 16px/1 var(--f-body); text-decoration: none; cursor: pointer; transition: background .2s, transform .15s; }
+.btn-gold { background: var(--gold); color: #fff; }
+.btn-gold:hover { background: var(--gold-deep); }
+.btn-line { background: transparent; color: var(--gold-deep); box-shadow: inset 0 0 0 2px var(--gold); }
+.btn-line:hover { background: var(--gold-tint); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+
+/* Kopfleiste */
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--gold); color: #fff; }
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 70px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+.logo svg { width: 26px; height: 38px; }
+.logo span { font: 700 italic 30px/1 var(--f-logo); }
+.nav { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+.nav a { color: #fff; text-decoration: none; font-weight: 500; font-size: 16px; }
+.nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
+.burger { display: none; background: none; border: 0; color: #fff; padding: 8px; cursor: pointer; }
+.burger svg { width: 28px; height: 28px; }
+@media (max-width: 860px) {
+  .burger { display: block; }
+  .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; gap: 0; background: var(--gold); padding: 8px var(--gutter-r) 16px var(--gutter-l); }
+  .topbar.open .nav { display: flex; }
+  .nav a { display: block; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.25); }
+}
+
+/* Hinweisleiste Winter */
+.notice { background: var(--ink); color: #fff; font-size: 15px; }
+.notice .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; padding-block: 10px; text-align: center; }
+.notice a { color: var(--gold); font-weight: 700; }
+
+/* Startbereich */
+.hero { padding-block: 64px 72px; }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
+.hero h1 { font-size: clamp(40px, 6vw, 68px); margin: 14px 0 20px; }
+.hero .lead { margin-bottom: 30px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink-soft); }
+.facts span::before { content: "✓"; color: var(--gold-deep); font-weight: 700; margin-right: 7px; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .hero-img { order: -1; } }
+
+/* Eis-Kurse */
+.kurse { background: var(--paper); border-block: 1px solid var(--line); }
+.kurse-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: start; }
+.kurse-grid > * { min-width: 0; }
+.kurs-img { background: var(--cream); border-radius: 10px; padding: 18px; }
+.kurs-list { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 12px; }
+.kurs-list li { display: flex; gap: 12px; align-items: baseline; }
+.kurs-list li::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); transform: translateY(-2px); }
+.kurs-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin-top: 28px; }
+.kurs-facts div { background: var(--paper); padding: 14px 16px; }
+.kurs-facts dt { font-size: 13px; color: var(--ink-soft); }
+.kurs-facts dd { margin: 2px 0 0; font-weight: 700; }
+.ph { color: var(--gold-deep); font-style: italic; font-weight: 500; }
+
+.termine { background: var(--cream); border: 1px solid var(--line); border-radius: 10px; padding: 26px; }
+.termine-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.termine-head h3 { font-size: 24px; }
+.tag-demo { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--low); background: var(--low-bg); padding: 4px 9px; border-radius: 4px; }
+.termin { display: grid; grid-template-columns: 64px 1fr auto; gap: 16px; align-items: center; padding: 16px 0; border-top: 1px solid var(--line); }
+.termin .date { text-align: center; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 8px 0 6px; font-variant-numeric: tabular-nums; }
+.termin .date b { display: block; font: 600 24px/1 var(--f-display); }
+.termin .date small { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-soft); }
+.termin .what { min-width: 0; }
+.termin .what strong { display: block; }
+.termin .what span { font-size: 14px; color: var(--ink-soft); }
+.pill { font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 99px; white-space: nowrap; }
+.pill.ok { color: var(--ok); background: var(--ok-bg); }
+.pill.low { color: var(--low); background: var(--low-bg); }
+.pill.full { color: var(--full); background: var(--full-bg); }
+.monat { border-top: 1px solid var(--line); padding-block: 14px; }
+.monat h4 { margin: 0 0 10px; font: 600 17px/1.3 var(--f-display); }
+.monat h4 span { display: block; font: 700 12px/1.4 var(--f-body); letter-spacing: .14em; text-transform: uppercase; color: var(--gold-deep); }
+.monat ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.monat li { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; font-variant-numeric: tabular-nums; }
+.monat li b { display: block; font-size: 15px; }
+.monat li span { font-size: 13px; color: var(--ink-soft); }
+.kurse-side { display: grid; gap: 22px; }
+.team { background: var(--ink); color: #fff; border-radius: 10px; padding: 24px 26px; display: grid; gap: 10px; justify-items: start; }
+.team h3 { color: #fff; font-size: 22px; }
+.team p { color: #e9dccb; font-size: 16px; }
+.team .btn-line { color: #fff; box-shadow: inset 0 0 0 2px var(--gold); margin-top: 6px; }
+.team .btn-line:hover { background: rgba(202,158,103,.18); }
+.termine .btn { width: 100%; justify-content: center; margin-top: 18px; }
+.termine-note { font-size: 14px; color: var(--ink-soft); margin-top: 12px; text-align: center; }
+@media (max-width: 860px) { .kurse-grid { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 420px) { .termin { grid-template-columns: 56px 1fr; } .termin .pill { grid-column: 2; justify-self: start; } }
+
+/* Catering-Kacheln */
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 0 22px 22px; display: flex; flex-direction: column; }
+.card .ribbon { align-self: center; transform: translateY(-50%); }
+.card figure { margin: 0 0 18px; height: 190px; display: grid; place-items: center; }
+.card figure img { max-height: 190px; width: auto; object-fit: contain; }
+.card p { color: var(--ink-soft); font-size: 15.5px; }
+.card ul { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 6px; font-size: 15px; }
+.card ul li::before { content: "·"; color: var(--gold-deep); font-weight: 700; margin-right: 8px; }
+.card .foot { margin-top: auto; padding-top: 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.price { font: 600 18px/1.15 var(--f-display); color: var(--gold-deep); }
+.price small { display: block; font: 400 12px/1.3 var(--f-body); color: var(--ink-soft); margin-top: 3px; }
+.card .btn { padding: 11px 16px; font-size: 15px; }
+.cards-more { margin-top: 22px; background: var(--ink); color: #fff; border-radius: 10px; padding: 26px 28px; display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+.cards-more h3 { color: #fff; font-size: 24px; }
+.cards-more p { color: #e9dccb; margin-top: 4px; }
+.price-note { margin-top: 14px; font-size: 13px; color: var(--ink-soft); }
+@media (max-width: 960px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .cards { grid-template-columns: 1fr; } }
+
+/* Ablauf */
+.steps-band { background: var(--gold-tint); }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; list-style: none; padding: 0; margin: 0; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; gap: 8px; }
+.steps li::before { content: counter(s); width: 44px; height: 44px; border-radius: 50%; background: var(--gold); color: #fff; display: grid; place-items: center; font: 600 20px/1 var(--f-display); }
+.steps h3 { font-size: 21px; }
+.steps p { color: var(--ink-soft); font-size: 16px; }
+@media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+
+/* Anfrage */
+.form-grid { display: grid; grid-template-columns: 0.9fr 1.3fr; gap: 56px; align-items: start; }
+.form-grid > * { min-width: 0; }
+form { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 30px; display: grid; gap: 16px; }
+.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+label { display: grid; gap: 6px; font-size: 14px; font-weight: 700; color: var(--ink-soft); }
+input, select, textarea { font: 400 16px/1.4 var(--f-body); color: var(--ink); background: var(--cream); border: 1.5px solid var(--line); border-radius: 6px; padding: 11px 13px; width: 100%; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); background: var(--paper); }
+textarea { min-height: 110px; resize: vertical; }
+.form-small { font-size: 13px; color: var(--ink-soft); }
+.form-ok { background: var(--ok-bg); color: var(--ok); border-radius: 6px; padding: 14px 16px; font-weight: 500; }
+.contact-lines { display: grid; gap: 10px; margin-top: 26px; }
+.contact-lines div { display: flex; gap: 10px; align-items: baseline; }
+.contact-lines b { min-width: 74px; color: var(--ink-soft); font-weight: 500; font-size: 15px; }
+@media (max-width: 860px) { .form-grid { grid-template-columns: 1fr; gap: 36px; } }
+@media (max-width: 520px) { .row { grid-template-columns: 1fr; } form { padding: 22px 18px; } }
+
+/* Fußzeile */
+footer { background: var(--ink); color: #d8c8b4; font-size: 15px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 28px; padding-block: 30px calc(30px + env(safe-area-inset-bottom, 0px)); }
+footer a { color: #fff; }
+footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<header class="topbar" id="topbar">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Eis im Glück – zum Seitenanfang">
+      <svg viewBox="0 0 26 38" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 14 13 37 21 14"/><path d="M7 14c-3 0-4-3-2-5 0-3 3-4 5-3 1-3 6-3 7 0 2-1 5 0 5 3 2 2 1 5-2 5Z"/><path d="M10 10c1-1 3-1 4 0m-1-3c1 0 2 1 2 2"/></svg>
+      <span>Eis im Glück</span>
+    </a>
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav" id="nav">
+      <li><a href="#kurse">Workshops</a></li>
+      <li><a href="#catering">Catering</a></li>
+      <li><a href="#ablauf">Ablauf</a></li>
+      <li><a href="#anfrage">Anfrage</a></li>
+      <li><a href="https://www.eisimglueck.de" target="_blank" rel="noopener">eisimglueck.de</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="notice" id="top">
+  <div class="wrap">
+    <span>Neu im Winter: Eis-Workshops in unserem Eislabor in Nürnberg.</span>
+    <a href="#kurse">Termine ansehen</a>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Catering &amp; Workshops von Eis im Glück</div>
+      <h1>Eis für unvergessliche Momente.</h1>
+      <p class="lead">Ob Hochzeit, Firmenfeier oder Stadtfest: Wir bringen 100&nbsp;% natürliches Eis aus unserer Nürnberger Manufaktur direkt zu deinem Event.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#anfrage">Termin anfragen
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-line" href="#catering">Alle Angebote</a>
+      </div>
+      <div class="facts"><span>100 % natürliches Eis</span><span>Seit 2013 aus Nürnberg</span><span>Milch &amp; Sahne aus der Region</span></div>
+    </div>
+    <div class="hero-img"><img src="bilder/eismobil.png" alt="Das Eismobil von Eis im Glück" width="720" height="285"></div>
+  </div>
+</section>
+
+<section class="band kurse" id="kurse">
+  <div class="wrap kurse-grid">
+    <div>
+      <div class="head">
+        <div class="eyebrow">Workshop · Winter 2026/27</div>
+        <h2>Workshop für magisch gutes Eis.</h2>
+        <p class="lead">Du wolltest schon immer wissen, wie echtes Eis entsteht? Dann wirf einen exklusiven Blick hinter die Kulissen unseres Eislabors und mach dein eigenes Eis.</p>
+      </div>
+      <div class="kurs-img"><img src="bilder/eisschulung.png" alt="Arbeitsplatz im Eis-Workshop mit Eismaschine, Zutaten und Urkunde" width="720" height="465"></div>
+      <ul class="kurs-list">
+        <li>Entwickle eine der drei Monatsmotto-Eissorten</li>
+        <li>Produziere dein eigenes Eis wie ein echter Eismacher</li>
+        <li>Genieße Getränke und kleine Häppchen</li>
+        <li>Nimm dein Eis in einer Geschenkbox mit nach Hause, dazu deine persönliche Eis-Urkunde</li>
+        <li>Ideal als Geschenk, auch als Gutschein erhältlich</li>
+      </ul>
+      <dl class="kurs-facts">
+        <div><dt>Dauer</dt><dd>3,5 Stunden</dd></div>
+        <div><dt>Preis</dt><dd>89 € pro Person</dd></div>
+        <div><dt>Ort</dt><dd>Eislabor Eis im Glück, Nürnberg</dd></div>
+        <div><dt>Gruppe</dt><dd>max. 10 Personen</dd></div>
+      </dl>
+    </div>
+
+    <div class="kurse-side">
+    <div class="termine" aria-labelledby="termine-title">
+      <div class="termine-head">
+        <h3 id="termine-title">Termine &amp; Monatsmottos</h3>
+        <span class="tag-demo">Belegung folgt</span>
+      </div>
+      <div class="monat"><h4><span>November</span> Nuss &amp; Karamell</h4><ul><li><b>Sa 14.11.</b><span>14:30–18:00 Uhr</span></li><li><b>Sa 21.11.</b><span>14:30–18:00 Uhr</span></li></ul></div>
+<div class="monat"><h4><span>Dezember</span> Winter &amp; Gewürz</h4><ul><li><b>Sa 05.12.</b><span>14:30–18:00 Uhr</span></li><li><b>Sa 12.12.</b><span>14:30–18:00 Uhr</span></li></ul></div>
+<div class="monat"><h4><span>Januar</span> Frucht &amp; Frische / Detox</h4><ul><li><b>Sa 16.01.</b><span>14:30–18:00 Uhr</span></li><li><b>Sa 23.01.</b><span>14:30–18:00 Uhr</span></li></ul></div>
+
+      <a class="btn btn-gold" href="#kurse" id="kurs-buchen">Workshop buchen
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="termine-note">Limitierte Plätze. Buchung und Zahlung per PayPal, die Bestätigung kommt sofort per E-Mail. Fragen an workshop@eisimglueck.de</p>
+    </div>
+    <div class="team">
+      <h3>Workshop nur für euer Team</h3>
+      <p>Ihr sucht eine Teambuilding-Idee oder feiert mit Freunden, könnt aber an keinem unserer Termine? Fragt euren eigenen Termin an, exklusiv für eure Firma, euren Verein oder eure Gruppe.</p>
+      <a class="btn btn-line" href="#anfrage" data-paket="Workshop für Team / Gruppe">Wunschtermin anfragen</a>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="catering">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Unsere buchbaren Angebote</div>
+      <h2>Für jeden Anlass das passende Highlight.</h2>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <span class="ribbon">Eismobil</span>
+        <figure><img src="bilder/eismobil.png" alt="Eismobil" loading="lazy"></figure>
+        <p>Unser Eiswagen kommt zu dir. Ideal für Firmenevents, Jubiläen und große Feiern.</p>
+        <ul><li>ab ca. 150 Personen</li><li>bis zu 3 Std. Einsatz, 1 Person zur Ausgabe</li><li>Waffeln und Servietten inklusive</li></ul>
+        <div class="foot"><div class="price">Preis auf Anfrage<small>abhängig von Personenzahl &amp; Einsatz</small></div><a class="btn btn-line" href="#anfrage" data-paket="Eismobil">Anfragen</a></div>
+      </article>
+      <article class="card">
+        <span class="ribbon">Eis-Cycle</span>
+        <figure><img src="bilder/eiscycle.png" alt="Eis-Cycle" loading="lazy"></figure>
+        <p>Das Lastenrad mit Eistruhe voller Glücksbecher. Fährt bis zu 8 Stunden ohne Strom.</p>
+        <ul><li>Park, See, Hof oder Firmengelände</li><li>bis zu 8 Std. autark</li><li>Glücksbecher in vielen Sorten</li></ul>
+        <div class="foot"><div class="price">Preis auf Anfrage<small>abhängig von Personenzahl &amp; Einsatz</small></div><a class="btn btn-line" href="#anfrage" data-paket="Eis-Cycle">Anfragen</a></div>
+      </article>
+      <article class="card">
+        <span class="ribbon">Glückstonne</span>
+        <figure><img src="bilder/glueckstonne.png" alt="Glückstonne" loading="lazy"></figure>
+        <p>Die rollende Kühltonne, gefüllt mit Glücksbechern. Gäste bedienen sich selbst.</p>
+        <ul><li>groß: 128 Glücksbecher</li><li>klein: 84 Glücksbecher</li><li>fertig befüllt geliefert</li></ul>
+        <div class="foot"><div class="price">Preis auf Anfrage<small>abhängig von Personenzahl &amp; Einsatz</small></div><a class="btn btn-line" href="#anfrage" data-paket="Glückstonne">Anfragen</a></div>
+      </article>
+      <article class="card">
+        <span class="ribbon">Glücksbox</span>
+        <figure><img src="bilder/gluecksbox.png" alt="Glücksbox" loading="lazy"></figure>
+        <p>Die mobile Kühlbox auf Rädern. Kühlt einen ganzen Tag lang, ganz ohne Steckdose.</p>
+        <ul><li>bis zu 1 Tag autark</li><li>auf Rädern, überall einsetzbar</li><li>gefüllt mit Glücksbechern</li></ul>
+        <div class="foot"><div class="price">Preis auf Anfrage<small>abhängig von Personenzahl &amp; Einsatz</small></div><a class="btn btn-line" href="#anfrage" data-paket="Glücksbox">Anfragen</a></div>
+      </article>
+      <article class="card">
+        <span class="ribbon">Tischvitrine</span>
+        <figure><img src="bilder/tischvitrine.png" alt="Tischvitrine klein und groß" loading="lazy"></figure>
+        <p>Stilvoll präsentieren, frisch servieren. Zum Selbstabholen für dein Event.</p>
+        <ul><li>klein: 2 Eisschalen à 5 Liter</li><li>groß: 3 Eisschalen à 5 Liter</li><li>Becher, Löffel, Kühlbox, Portionierer</li></ul>
+        <div class="foot"><div class="price">Preis auf Anfrage<small>abhängig von Personenzahl &amp; Einsatz</small></div><a class="btn btn-line" href="#anfrage" data-paket="Tischvitrine">Anfragen</a></div>
+      </article>
+      <article class="card">
+        <span class="ribbon">Glückszeit am Strand</span>
+        <figure><img src="bilder/glueckszeit.png" alt="Glückszeit am Strand Paket mit Liegestühlen, Sonnenschirm und Glückstonne" loading="lazy"></figure>
+        <p>Zwei Liegestühle, ein Sonnenschirm und eine Glückstonne voller Glücksbecher.</p>
+        <ul><li>Rundum-sorglos-Paket</li><li>Liegestühle und Sonnenschirm</li><li>Glückstonne inklusive</li></ul>
+        <div class="foot"><div class="price">Preis auf Anfrage<small>abhängig von Personenzahl &amp; Einsatz</small></div><a class="btn btn-line" href="#anfrage" data-paket="Glückszeit am Strand">Anfragen</a></div>
+      </article>
+    </div>
+    <div class="cards-more">
+      <div><h3>Sondercatering</h3><p>Messeauftritt, Firmenpräsentation oder etwas ganz Eigenes? Wir planen es mit dir.</p></div>
+      <a class="btn btn-gold" href="#anfrage" data-paket="Sondercatering">Gemeinsam planen</a>
+    </div>
+  </div>
+</section>
+
+<section class="band steps-band" id="ablauf">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">So einfach geht's</div>
+      <h2>In 3 Schritten zu deinem Event-Highlight.</h2>
+    </div>
+    <ol class="steps">
+      <li><h3>Anfrage senden</h3><p>Wähle dein Angebot, deinen Wunschtermin und die Personenzahl.</p></li>
+      <li><h3>Details klären</h3><p>Wir melden uns bei dir und besprechen Sorten, Ablauf und Preis.</p></li>
+      <li><h3>Glück genießen</h3><p>Wir kommen pünktlich, bauen auf und sorgen für Eis bei deinen Gästen.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band" id="anfrage">
+  <div class="wrap form-grid">
+    <div>
+      <div class="head">
+        <div class="eyebrow">Termin anfragen</div>
+        <h2>Prüfe jetzt die Verfügbarkeit für dein Event.</h2>
+        <p class="lead">Schick uns deine Eckdaten. Wir melden uns schnell mit einer Rückmeldung oder einem persönlichen Angebot.</p>
+      </div>
+      <div class="contact-lines" id="kontakt">
+        <div><b>Telefon</b><span>+49 911 548 320 41</span></div>
+        <div><b>E-Mail</b><span>info@eisimglueck.de</span></div>
+        <div><b>Instagram</b><a href="https://www.instagram.com/eisimglueck/" target="_blank" rel="noopener">@eisimglueck</a></div>
+      </div>
+    </div>
+    <form id="anfrage-form" novalidate>
+      <label for="f-paket">Angebot
+        <select id="f-paket" name="paket" required>
+          <option value="">Bitte wählen</option>
+          <option>Eismobil</option><option>Eis-Cycle</option><option>Glückstonne</option><option>Glücksbox</option>
+          <option>Tischvitrine</option><option>Glückszeit am Strand</option><option>Sondercatering</option><option>Workshop für Team / Gruppe</option>
+        </select>
+      </label>
+      <div class="row">
+        <label for="f-datum">Wunschdatum<input id="f-datum" name="datum" type="date" required></label>
+        <label for="f-personen">Personenzahl<input id="f-personen" name="personen" type="number" min="1" inputmode="numeric" placeholder="z. B. 150" required></label>
+      </div>
+      <div class="row">
+        <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required></label>
+        <label for="f-mail">E-Mail<input id="f-mail" name="email" type="email" autocomplete="email" required></label>
+      </div>
+      <label for="f-ort">Veranstaltungsort<input id="f-ort" name="ort" placeholder="Straße, Ort"></label>
+      <label for="f-text">Nachricht<textarea id="f-text" name="nachricht" placeholder="Anlass, Wunschsorten, Fragen …"></textarea></label>
+      <button class="btn btn-gold" type="submit">Anfrage senden</button>
+      <p class="form-small">Mit dem Absenden stimmst du der Verarbeitung deiner Angaben zur Beantwortung deiner Anfrage zu. Mehr in der Datenschutzerklärung.</p>
+      <p class="form-ok" id="form-ok" hidden>Danke! In der Vorschau wird noch nichts verschickt. Das Formular wird beim Online-Stellen mit eurem Postfach verbunden.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Eis im Glück · Nürnberg</span>
+    <nav><a href="https://www.eisimglueck.de" target="_blank" rel="noopener">eisimglueck.de</a><a href="https://www.eisimglueck.de/impressum" target="_blank" rel="noopener">Impressum</a><a href="https://www.eisimglueck.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a></nav>
+  </div>
+</footer>
+
+<script>
+// Menü auf dem Handy
+const bar = document.getElementById('topbar'), burger = document.getElementById('burger');
+burger.addEventListener('click', () => { const o = bar.classList.toggle('open'); burger.setAttribute('aria-expanded', o); });
+document.querySelectorAll('#nav a').forEach(a => a.addEventListener('click', () => { bar.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }));
+
+// "Anfragen" auf einer Kachel wählt das Angebot im Formular vor
+document.querySelectorAll('[data-paket]').forEach(b => b.addEventListener('click', () => { document.getElementById('f-paket').value = b.dataset.paket; }));
+
+// Frühestes Datum: morgen
+const d = new Date(); d.setDate(d.getDate() + 1);
+document.getElementById('f-datum').min = d.toISOString().slice(0, 10);
+
+// Vorschau: Formular verschickt noch nichts (später Formspree o. ä.)
+document.getElementById('anfrage-form').addEventListener('submit', e => {
+  e.preventDefault();
+  if (!e.target.checkValidity()) { e.target.reportValidity(); return; }
+  document.getElementById('form-ok').hidden = false;
+});
+
+// Buchungsbutton: wird später mit dem Ticket-Shop (pretix) verbunden
+document.getElementById('kurs-buchen').addEventListener('click', e => {
+  e.preventDefault();
+  e.currentTarget.lastChild.textContent = '';
+  e.currentTarget.firstChild.textContent = 'Buchung wird gerade eingerichtet ';
+});
+</script>
+</body>
+</html>
