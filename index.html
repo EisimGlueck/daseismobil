@@ -136,6 +136,7 @@ p { margin: 0; }
 .team { background: var(--ink); color: #fff; border-radius: 10px; padding: 24px 26px; display: grid; gap: 10px; justify-items: start; }
 .team h3 { color: #fff; font-size: 22px; }
 .team p { color: #e9dccb; font-size: 16px; }
+.team p + p { margin-top: -4px; }
 .team .btn-line { color: #fff; box-shadow: inset 0 0 0 2px var(--gold); margin-top: 6px; }
 .team .btn-line:hover { background: rgba(202,158,103,.18); }
 .termine .btn { width: 100%; justify-content: center; margin-top: 18px; }
@@ -152,8 +153,8 @@ p { margin: 0; }
 .card p { color: var(--ink-soft); font-size: 15.5px; }
 .card ul { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 6px; font-size: 15px; }
 .card ul li::before { content: "·"; color: var(--gold-deep); font-weight: 700; margin-right: 8px; }
-.card .foot { margin-top: auto; padding-top: 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-.price { font: 600 18px/1.15 var(--f-display); color: var(--gold-deep); }
+.card .foot { margin-top: auto; padding-top: 18px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.price { font: 600 17px/1.25 var(--f-display); color: var(--gold-deep); }
 .price small { display: block; font: 400 12px/1.3 var(--f-body); color: var(--ink-soft); margin-top: 3px; }
 .card .btn { padding: 11px 16px; font-size: 15px; }
 .cards-more { margin-top: 22px; background: var(--ink); color: #fff; border-radius: 10px; padding: 26px 28px; display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
@@ -181,6 +182,7 @@ label { display: grid; gap: 6px; font-size: 14px; font-weight: 700; color: var(-
 input, select, textarea { font: 400 16px/1.4 var(--f-body); color: var(--ink); background: var(--cream); border: 1.5px solid var(--line); border-radius: 6px; padding: 11px 13px; width: 100%; }
 input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); background: var(--paper); }
 textarea { min-height: 110px; resize: vertical; }
+.form-note { font-weight: 700; color: var(--ink); font-size: 15px; }
 .form-small { font-size: 13px; color: var(--ink-soft); }
 .form-ok { background: var(--ok-bg); color: var(--ok); border-radius: 6px; padding: 14px 16px; font-weight: 500; }
 .contact-lines { display: grid; gap: 10px; margin-top: 26px; }
@@ -227,13 +229,13 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
     <div>
       <div class="eyebrow">Catering &amp; Workshops von Eis im Glück</div>
       <h1>Eis für unvergessliche Momente.</h1>
-      <p class="lead">Ob Hochzeit, Firmenfeier oder Stadtfest: Wir bringen 100&nbsp;% natürliches Eis aus unserer Nürnberger Manufaktur direkt zu deinem Event.</p>
+      <p class="lead">Ob Hochzeit, Firmenfeier oder Stadtfest: Wir bringen handgemachtes Eis aus unserer Nürnberger Manufaktur direkt zu deinem Event. Natürlich lecker, mit Liebe gemacht und ein besonderes Highlight für deine Gäste.</p>
       <div class="hero-actions">
         <a class="btn btn-gold" href="#anfrage">Termin anfragen
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn-line" href="#catering">Alle Angebote</a>
       </div>
-      <div class="facts"><span>100 % natürliches Eis</span><span>Seit 2013 aus Nürnberg</span><span>Milch &amp; Sahne aus der Region</span></div>
+      <div class="facts"><span>100 % natürliche Zutaten</span><span>Seit 2013 aus Nürnberg</span><span>Aus eigener Eismanufaktur</span></div>
     </div>
     <div class="hero-img"><img src="bilder/eismobil.png" alt="Das Eismobil von Eis im Glück" width="720" height="285"></div>
   </div>
@@ -245,15 +247,15 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       <div class="head">
         <div class="eyebrow">Workshop · Winter 2026/27</div>
         <h2>Workshop für magisch gutes Eis.</h2>
-        <p class="lead">Du wolltest schon immer wissen, wie echtes Eis entsteht? Dann wirf einen exklusiven Blick hinter die Kulissen unseres Eislabors und mach dein eigenes Eis.</p>
+        <p class="lead">Du wolltest schon immer wissen, wie richtig gutes Eis entsteht? Wir öffnen die Türen unserer Nürnberger Eismanufaktur! Entdecke die Geheimnisse der Eisherstellung, werde selbst kreativ und stelle dein eigenes Eis her.</p>
       </div>
       <div class="kurs-img"><img src="bilder/eisschulung.png" alt="Arbeitsplatz im Eis-Workshop mit Eismaschine, Zutaten und Urkunde" width="720" height="465"></div>
       <ul class="kurs-list">
-        <li>Entwickle eine der drei Monatsmotto-Eissorten</li>
-        <li>Produziere dein eigenes Eis wie ein echter Eismacher</li>
-        <li>Genieße Getränke und kleine Häppchen</li>
-        <li>Nimm dein Eis in einer Geschenkbox mit nach Hause, dazu deine persönliche Eis-Urkunde</li>
-        <li>Ideal als Geschenk, auch als Gutschein erhältlich</li>
+        <li>Kreiere deine eigene Eissorte passend zum Monatsmotto.</li>
+        <li>Werde selbst zum Eismacher, von den Zutaten bis zum fertigen Eis.</li>
+        <li>Starte mit einem Glas Sekt und genieße kleine Häppchen zwischendurch.</li>
+        <li>Nimm dein selbst gemachtes Eis und deine persönliche Eis-Urkunde mit nach Hause.</li>
+        <li>Auch als Gutschein erhältlich: ein besonderes Geschenk für Eisliebhaber.</li>
       </ul>
       <dl class="kurs-facts">
         <div><dt>Dauer</dt><dd>3,5 Stunden</dd></div>
@@ -278,8 +280,9 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       <p class="termine-note">Limitierte Plätze. Buchung und Zahlung per PayPal, die Bestätigung kommt sofort per E-Mail. Fragen an workshop@eisimglueck.de</p>
     </div>
     <div class="team">
-      <h3>Workshop nur für euer Team</h3>
-      <p>Ihr sucht eine Teambuilding-Idee oder feiert mit Freunden, könnt aber an keinem unserer Termine? Fragt euren eigenen Termin an, exklusiv für eure Firma, euren Verein oder eure Gruppe.</p>
+      <h3>Euer exklusiver Eisworkshop</h3>
+      <p>Ob Teamevent, Geburtstag oder gemeinsames Erlebnis mit Freunden: Werdet zusammen zu Eismachern!</p>
+      <p>Wir gestalten euren Workshop individuell für eure Gruppe, mit eigenem Wunschtermin.</p>
       <a class="btn btn-line" href="#anfrage" data-paket="Workshop für Team / Gruppe">Wunschtermin anfragen</a>
     </div>
     </div>
@@ -296,48 +299,48 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       <article class="card">
         <span class="ribbon">Eismobil</span>
         <figure><img src="bilder/eismobil.png" alt="Eismobil" loading="lazy"></figure>
-        <p>Unser Eiswagen kommt zu dir. Ideal für Firmenevents, Jubiläen und große Feiern.</p>
-        <ul><li>ab ca. 150 Personen</li><li>bis zu 3 Std. Einsatz, 1 Person zur Ausgabe</li><li>Waffeln und Servietten inklusive</li></ul>
-        <div class="foot"><div class="price">Preis auf Anfrage<small>abhängig von Personenzahl &amp; Einsatz</small></div><a class="btn btn-line" href="#anfrage" data-paket="Eismobil">Anfragen</a></div>
+        <p>Großer Auftritt, großes Eisglück! Unser Eismobil bringt handgemachtes Eis direkt zu deiner Feier.</p>
+        <ul><li>Ideal für Events ab ca. 150 Personen</li><li>Bis zu 3 Stunden Einsatz mit Personal</li><li>Waffeln und Servietten inklusive</li></ul>
+        <div class="foot"><div class="price">Individuelles Angebot auf Anfrage</div><a class="btn btn-line" href="#anfrage" data-paket="Eismobil">Anfragen</a></div>
       </article>
       <article class="card">
         <span class="ribbon">Eis-Cycle</span>
         <figure><img src="bilder/eiscycle.png" alt="Eis-Cycle" loading="lazy"></figure>
-        <p>Das Lastenrad mit Eistruhe voller Glücksbecher. Fährt bis zu 8 Stunden ohne Strom.</p>
-        <ul><li>Park, See, Hof oder Firmengelände</li><li>bis zu 8 Std. autark</li><li>Glücksbecher in vielen Sorten</li></ul>
-        <div class="foot"><div class="price">Preis auf Anfrage<small>abhängig von Personenzahl &amp; Einsatz</small></div><a class="btn btn-line" href="#anfrage" data-paket="Eis-Cycle">Anfragen</a></div>
+        <p>Klein, charmant und voller Eisglück! Unser Eis-Cycle kommt fast überall hin und versorgt deine Gäste ganz ohne Steckdose.</p>
+        <ul><li>Ideal für Parks, Höfe und Firmengelände</li><li>Bis zu 8 Stunden autark</li><li>Glücksbecher in vielen Sorten</li></ul>
+        <div class="foot"><div class="price">Individuelles Angebot auf Anfrage</div><a class="btn btn-line" href="#anfrage" data-paket="Eis-Cycle">Anfragen</a></div>
       </article>
       <article class="card">
         <span class="ribbon">Glückstonne</span>
         <figure><img src="bilder/glueckstonne.png" alt="Glückstonne" loading="lazy"></figure>
-        <p>Die rollende Kühltonne, gefüllt mit Glücksbechern. Gäste bedienen sich selbst.</p>
-        <ul><li>groß: 128 Glücksbecher</li><li>klein: 84 Glücksbecher</li><li>fertig befüllt geliefert</li></ul>
-        <div class="foot"><div class="price">Preis auf Anfrage<small>abhängig von Personenzahl &amp; Einsatz</small></div><a class="btn btn-line" href="#anfrage" data-paket="Glückstonne">Anfragen</a></div>
+        <p>Eine Tonne voller Glück! Unsere Glückstonne kommt gefüllt mit leckeren Glücksbechern zu dir. Deine Gäste bedienen sich einfach selbst.</p>
+        <ul><li>Groß: 128 Glücksbecher</li><li>Klein: 84 Glücksbecher</li><li>Fertig befüllt geliefert</li></ul>
+        <div class="foot"><div class="price">Individuelles Angebot auf Anfrage</div><a class="btn btn-line" href="#anfrage" data-paket="Glückstonne">Anfragen</a></div>
       </article>
       <article class="card">
         <span class="ribbon">Glücksbox</span>
         <figure><img src="bilder/gluecksbox.png" alt="Glücksbox" loading="lazy"></figure>
-        <p>Die mobile Kühlbox auf Rädern. Kühlt einen ganzen Tag lang, ganz ohne Steckdose.</p>
-        <ul><li>bis zu 1 Tag autark</li><li>auf Rädern, überall einsetzbar</li><li>gefüllt mit Glücksbechern</li></ul>
-        <div class="foot"><div class="price">Preis auf Anfrage<small>abhängig von Personenzahl &amp; Einsatz</small></div><a class="btn btn-line" href="#anfrage" data-paket="Glücksbox">Anfragen</a></div>
+        <p>Kleines Gerät, großes Eisglück! Unsere mobile Glücksbox hält deine Glücksbecher auch ohne Steckdose schön kalt.</p>
+        <ul><li>Bis zu 1 Tag autark</li><li>Auf Rädern flexibel einsetzbar</li><li>Gefüllt mit Glücksbechern</li></ul>
+        <div class="foot"><div class="price">Individuelles Angebot auf Anfrage</div><a class="btn btn-line" href="#anfrage" data-paket="Glücksbox">Anfragen</a></div>
       </article>
       <article class="card">
         <span class="ribbon">Tischvitrine</span>
         <figure><img src="bilder/tischvitrine.png" alt="Tischvitrine klein und groß" loading="lazy"></figure>
-        <p>Stilvoll präsentieren, frisch servieren. Zum Selbstabholen für dein Event.</p>
-        <ul><li>klein: 2 Eisschalen à 5 Liter</li><li>groß: 3 Eisschalen à 5 Liter</li><li>Becher, Löffel, Kühlbox, Portionierer</li></ul>
-        <div class="foot"><div class="price">Preis auf Anfrage<small>abhängig von Personenzahl &amp; Einsatz</small></div><a class="btn btn-line" href="#anfrage" data-paket="Tischvitrine">Anfragen</a></div>
+        <p>Klein, aber oho! Unsere Tischvitrine bringt echtes Eisdielen-Feeling auf dein Event. Frisch portioniert und stilvoll serviert.</p>
+        <ul><li>Klein: 2 Eisschalen à 5 Liter</li><li>Groß: 3 Eisschalen à 5 Liter</li><li>Becher, Löffel, Kühlung und Portionierer inklusive</li></ul>
+        <div class="foot"><div class="price">Individuelles Angebot auf Anfrage</div><a class="btn btn-line" href="#anfrage" data-paket="Tischvitrine">Anfragen</a></div>
       </article>
       <article class="card">
         <span class="ribbon">Glückszeit am Strand</span>
         <figure><img src="bilder/glueckszeit.png" alt="Glückszeit am Strand Paket mit Liegestühlen, Sonnenschirm und Glückstonne" loading="lazy"></figure>
-        <p>Zwei Liegestühle, ein Sonnenschirm und eine Glückstonne voller Glücksbecher.</p>
+        <p>Ein bisschen Urlaub für dein Event! Mit Liegestühlen, Sonnenschirm und Glückstonne wird aus jeder Feier eine kleine Auszeit.</p>
         <ul><li>Rundum-sorglos-Paket</li><li>Liegestühle und Sonnenschirm</li><li>Glückstonne inklusive</li></ul>
-        <div class="foot"><div class="price">Preis auf Anfrage<small>abhängig von Personenzahl &amp; Einsatz</small></div><a class="btn btn-line" href="#anfrage" data-paket="Glückszeit am Strand">Anfragen</a></div>
+        <div class="foot"><div class="price">Individuelles Angebot auf Anfrage</div><a class="btn btn-line" href="#anfrage" data-paket="Glückszeit am Strand">Anfragen</a></div>
       </article>
     </div>
     <div class="cards-more">
-      <div><h3>Sondercatering</h3><p>Messeauftritt, Firmenpräsentation oder etwas ganz Eigenes? Wir planen es mit dir.</p></div>
+      <div><h3>Sondercatering</h3><p>Du hast eine besondere Idee? Wir haben das passende Eisglück dazu! Ob Messe, Firmenfeier oder außergewöhnliches Event: Gemeinsam machen wir etwas Besonderes daraus.</p></div>
       <a class="btn btn-gold" href="#anfrage" data-paket="Sondercatering">Gemeinsam planen</a>
     </div>
   </div>
@@ -350,9 +353,9 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       <h2>In 3 Schritten zu deinem Event-Highlight.</h2>
     </div>
     <ol class="steps">
-      <li><h3>Anfrage senden</h3><p>Wähle dein Angebot, deinen Wunschtermin und die Personenzahl.</p></li>
-      <li><h3>Details klären</h3><p>Wir melden uns bei dir und besprechen Sorten, Ablauf und Preis.</p></li>
-      <li><h3>Glück genießen</h3><p>Wir kommen pünktlich, bauen auf und sorgen für Eis bei deinen Gästen.</p></li>
+      <li><h3>Wunsch anfragen</h3><p>Such dir dein Eisglück aus und verrate uns, wann und wo gefeiert wird.</p></li>
+      <li><h3>Alles klar machen</h3><p>Wir prüfen deinen Termin und stimmen mit dir alle Details ab.</p></li>
+      <li><h3>Eisglück genießen</h3><p>Wir bringen das Eis, du genießt dein Fest. So einfach kann Glück sein!</p></li>
     </ol>
   </div>
 </section>
@@ -363,7 +366,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       <div class="head">
         <div class="eyebrow">Termin anfragen</div>
         <h2>Prüfe jetzt die Verfügbarkeit für dein Event.</h2>
-        <p class="lead">Schick uns deine Eckdaten. Wir melden uns schnell mit einer Rückmeldung oder einem persönlichen Angebot.</p>
+        <p class="lead">Du hast schon einen Wunschtermin im Kopf? Verrate uns, was du planst! Wir prüfen die Verfügbarkeit und melden uns mit einem passenden Angebot bei dir.</p>
       </div>
       <div class="contact-lines" id="kontakt">
         <div><b>Telefon</b><span>+49 911 548 320 41</span></div>
@@ -372,7 +375,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       </div>
     </div>
     <form id="anfrage-form" novalidate>
-      <label for="f-paket">Angebot
+      <label for="f-paket">Dein Wunschangebot
         <select id="f-paket" name="paket" required>
           <option value="">Bitte wählen</option>
           <option>Eismobil</option><option>Eis-Cycle</option><option>Glückstonne</option><option>Glücksbox</option>
@@ -380,7 +383,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
         </select>
       </label>
       <div class="row">
-        <label for="f-datum">Wunschdatum<input id="f-datum" name="datum" type="date" required></label>
+        <label for="f-datum">Wann soll gefeiert werden?<input id="f-datum" name="datum" type="date" required></label>
         <label for="f-personen">Personenzahl<input id="f-personen" name="personen" type="number" min="1" inputmode="numeric" placeholder="z. B. 150" required></label>
       </div>
       <div class="row">
@@ -389,8 +392,9 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       </div>
       <label for="f-ort">Veranstaltungsort<input id="f-ort" name="ort" placeholder="Straße, Ort"></label>
       <label for="f-text">Nachricht<textarea id="f-text" name="nachricht" placeholder="Anlass, Wunschsorten, Fragen …"></textarea></label>
-      <button class="btn btn-gold" type="submit">Anfrage senden</button>
-      <p class="form-small">Mit dem Absenden stimmst du der Verarbeitung deiner Angaben zur Beantwortung deiner Anfrage zu. Mehr in der Datenschutzerklärung.</p>
+      <button class="btn btn-gold" type="submit">Unverbindlich anfragen</button>
+      <p class="form-note">Deine Anfrage ist kostenlos und unverbindlich. Wir melden uns persönlich bei dir.</p>
+      <p class="form-small">Mit dem Absenden stimmst du der Verarbeitung deiner Angaben zur Beantwortung deiner Anfrage zu. Mehr dazu in unserer <a href="https://www.eisimglueck.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
       <p class="form-ok" id="form-ok" hidden>Danke! In der Vorschau wird noch nichts verschickt. Das Formular wird beim Online-Stellen mit eurem Postfach verbunden.</p>
     </form>
   </div>
