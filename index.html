@@ -183,7 +183,9 @@ input, select, textarea { font: 400 16px/1.4 var(--f-body); color: var(--ink); b
 input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); background: var(--paper); }
 textarea { min-height: 110px; resize: vertical; }
 .form-note { font-weight: 700; color: var(--ink); font-size: 15px; }
-.form-small { font-size: 13px; color: var(--ink-soft); }
+.check { display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start; font-weight: 400; font-size: 14px; line-height: 1.5; color: var(--ink-soft); cursor: pointer; }
+.check input { width: 22px; height: 22px; margin: 1px 0 0; padding: 0; accent-color: var(--gold-deep); cursor: pointer; }
+.check a { color: var(--gold-deep); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .form-err { background: var(--full-bg); color: var(--full); border-radius: 6px; padding: 14px 16px; font-weight: 500; }
 button:disabled { opacity: .6; cursor: wait; }
@@ -404,9 +406,12 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       </label>
       <label for="f-ort">Veranstaltungsort<input id="f-ort" name="ort" placeholder="Straße, Ort"></label>
       <label for="f-text">Nachricht<textarea id="f-text" name="nachricht" placeholder="Anlass, Wunschsorten, Fragen …"></textarea></label>
+      <label class="check" for="f-dsgvo">
+        <input type="checkbox" id="f-dsgvo" name="datenschutz" value="gelesen und einverstanden" required>
+        <span>Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden.</span>
+      </label>
       <button class="btn btn-gold" type="submit">Unverbindlich anfragen</button>
       <p class="form-note">Deine Anfrage ist kostenlos und unverbindlich. Wir melden uns persönlich bei dir.</p>
-      <p class="form-small">Mit dem Absenden stimmst du der Verarbeitung deiner Angaben zur Beantwortung deiner Anfrage zu. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
       <p class="form-ok" id="form-ok" role="status" hidden>Danke für deine Anfrage! Wir melden uns so schnell wie möglich persönlich bei dir.</p>
       <p class="form-err" id="form-err" role="alert" hidden>Das hat leider nicht geklappt. Bitte versuch es gleich noch einmal oder schreib uns direkt an info@eisimglueck.de.</p>
     </form>
