@@ -271,15 +271,14 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
     <div class="termine" aria-labelledby="termine-title">
       <div class="termine-head">
         <h3 id="termine-title">Termine &amp; Monatsmottos</h3>
-        <span class="tag-demo">Belegung folgt</span>
       </div>
       <div class="monat"><h4><span>November</span> Nuss &amp; Karamell</h4><ul><li><b>Sa 14.11.</b><span>14:30–18:00 Uhr</span></li><li><b>Sa 21.11.</b><span>14:30–18:00 Uhr</span></li></ul></div>
 <div class="monat"><h4><span>Dezember</span> Winter &amp; Gewürz</h4><ul><li><b>Sa 05.12.</b><span>14:30–18:00 Uhr</span></li><li><b>Sa 12.12.</b><span>14:30–18:00 Uhr</span></li></ul></div>
 <div class="monat"><h4><span>Januar</span> Frucht &amp; Frische / Detox</h4><ul><li><b>Sa 16.01.</b><span>14:30–18:00 Uhr</span></li><li><b>Sa 23.01.</b><span>14:30–18:00 Uhr</span></li></ul></div>
 
-      <a class="btn btn-gold" href="#kurse" id="kurs-buchen">Workshop buchen
+      <a class="btn btn-gold" href="https://pretix.eu/eisimglueck/workshop/" target="_blank" rel="noopener" id="kurs-buchen">Workshop buchen
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <p class="termine-note">Limitierte Plätze. Buchung und Zahlung per PayPal, die Bestätigung kommt sofort per E-Mail. Fragen an workshop@eisimglueck.de</p>
+      <p class="termine-note">Limitierte Plätze. Freie Plätze siehst du direkt beim Buchen. Bezahlung per PayPal, auch mit Karte oder Lastschrift. Die Bestätigung kommt sofort per E-Mail. Fragen an workshop@eisimglueck.de</p>
     </div>
     <div class="team">
       <h3>Euer exklusiver Eisworkshop</h3>
@@ -437,12 +436,6 @@ document.getElementById('anfrage-form').addEventListener('submit', e => {
   document.getElementById('form-ok').hidden = false;
 });
 
-// Buchungsbutton: wird später mit dem Ticket-Shop (pretix) verbunden
-document.getElementById('kurs-buchen').addEventListener('click', e => {
-  e.preventDefault();
-  e.currentTarget.lastChild.textContent = '';
-  e.currentTarget.firstChild.textContent = 'Buchung wird gerade eingerichtet ';
-});
 </script>
 </body>
 </html>
