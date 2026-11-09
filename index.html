@@ -184,6 +184,9 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--g
 textarea { min-height: 110px; resize: vertical; }
 .form-note { font-weight: 700; color: var(--ink); font-size: 15px; }
 .form-small { font-size: 13px; color: var(--ink-soft); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-err { background: var(--full-bg); color: var(--full); border-radius: 6px; padding: 14px 16px; font-weight: 500; }
+button:disabled { opacity: .6; cursor: wait; }
 .form-ok { background: var(--ok-bg); color: var(--ok); border-radius: 6px; padding: 14px 16px; font-weight: 500; }
 .contact-lines { display: grid; gap: 10px; margin-top: 26px; }
 .contact-lines div { display: flex; gap: 10px; align-items: baseline; }
@@ -375,6 +378,8 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       </div>
     </div>
     <form id="anfrage-form" novalidate>
+      <input type="hidden" name="_subject" value="Neue Anfrage über daseismobil.de">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
       <label for="f-paket">Dein Wunschangebot
         <select id="f-paket" name="paket" required>
           <option value="">Bitte wählen</option>
@@ -402,7 +407,8 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       <button class="btn btn-gold" type="submit">Unverbindlich anfragen</button>
       <p class="form-note">Deine Anfrage ist kostenlos und unverbindlich. Wir melden uns persönlich bei dir.</p>
       <p class="form-small">Mit dem Absenden stimmst du der Verarbeitung deiner Angaben zur Beantwortung deiner Anfrage zu. Mehr dazu in unserer <a href="https://www.eisimglueck.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
-      <p class="form-ok" id="form-ok" hidden>Danke! In der Vorschau wird noch nichts verschickt. Das Formular wird beim Online-Stellen mit eurem Postfach verbunden.</p>
+      <p class="form-ok" id="form-ok" role="status" hidden>Danke für deine Anfrage! Wir melden uns so schnell wie möglich persönlich bei dir.</p>
+      <p class="form-err" id="form-err" role="alert" hidden>Das hat leider nicht geklappt. Bitte versuch es gleich noch einmal oder schreib uns direkt an info@eisimglueck.de.</p>
     </form>
   </div>
 </section>
@@ -427,11 +433,24 @@ document.querySelectorAll('[data-paket]').forEach(b => b.addEventListener('click
 const d = new Date(); d.setDate(d.getDate() + 1);
 document.getElementById('f-datum').min = d.toISOString().slice(0, 10);
 
-// Vorschau: Formular verschickt noch nichts (später Formspree o. ä.)
-document.getElementById('anfrage-form').addEventListener('submit', e => {
+// Anfrage über Formspree an das Postfach schicken
+const form = document.getElementById('anfrage-form');
+const ok = document.getElementById('form-ok'), err = document.getElementById('form-err');
+const sendBtn = form.querySelector('button[type="submit"]');
+form.addEventListener('submit', async e => {
   e.preventDefault();
-  if (!e.target.checkValidity()) { e.target.reportValidity(); return; }
-  document.getElementById('form-ok').hidden = false;
+  ok.hidden = true; err.hidden = true;
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+  sendBtn.disabled = true; sendBtn.textContent = 'Wird gesendet …';
+  try {
+    const res = await fetch('https://formspree.io/f/maeegkzo', { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+    if (!res.ok) throw new Error(res.status);
+    form.reset(); ok.hidden = false;
+  } catch (x) {
+    err.hidden = false;
+  } finally {
+    sendBtn.disabled = false; sendBtn.textContent = 'Unverbindlich anfragen';
+  }
 });
 
 </script>
