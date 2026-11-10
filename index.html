@@ -130,6 +130,9 @@ p { margin: 0; }
 .monat li { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; font-variant-numeric: tabular-nums; }
 .monat li b { display: block; font-size: 15px; }
 .monat li span { font-size: 13px; color: var(--ink-soft); }
+.monat li.voll { background: var(--full-bg); border-color: transparent; }
+.monat li.voll b { color: var(--ink-soft); text-decoration: line-through; }
+.monat li.voll span { color: var(--full); font-weight: 700; }
 .kurse-side { display: grid; gap: 22px; }
 .team { background: var(--ink); color: #fff; border-radius: 10px; padding: 24px 26px; display: grid; gap: 10px; justify-items: start; }
 .team h3 { color: #fff; font-size: 22px; }
@@ -276,7 +279,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       <div class="termine-head">
         <h3 id="termine-title">Termine &amp; Monatsmottos</h3>
       </div>
-      <div class="monat"><h4><span>November</span> Nuss &amp; Karamell</h4><ul><li><b>Sa 14.11.</b><span>14:30–18:00 Uhr</span></li><li><b>Sa 21.11.</b><span>14:30–18:00 Uhr</span></li></ul></div>
+      <div class="monat"><h4><span>November</span> Nuss &amp; Karamell</h4><ul><li class="voll"><b>Sa 14.11.</b><span>Ausgebucht</span></li><li><b>Sa 21.11.</b><span>14:30–18:00 Uhr</span></li></ul></div>
 <div class="monat"><h4><span>Dezember</span> Winter &amp; Gewürz</h4><ul><li><b>Sa 05.12.</b><span>14:30–18:00 Uhr</span></li><li><b>Sa 12.12.</b><span>14:30–18:00 Uhr</span></li></ul></div>
 <div class="monat"><h4><span>Januar</span> Frucht &amp; Frische / Detox</h4><ul><li><b>Sa 16.01.</b><span>14:30–18:00 Uhr</span></li><li><b>Sa 23.01.</b><span>14:30–18:00 Uhr</span></li></ul></div>
 
