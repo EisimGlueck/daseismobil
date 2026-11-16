@@ -151,6 +151,10 @@ p { margin: 0; }
 .card .ribbon { align-self: center; transform: translateY(-50%); }
 .card figure { margin: 0 0 18px; height: 190px; display: grid; place-items: center; }
 .card figure img { max-height: 190px; width: auto; object-fit: contain; }
+/* Eismobil-Kachel: Video legt sich beim Darüberfahren über die Illustration */
+.card figure.hover-video { position: relative; }
+.hover-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 8px; background: #fff; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+.hover-video.is-playing video { opacity: 1; }
 .card p { color: var(--ink-soft); font-size: 15.5px; }
 .card ul { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 6px; font-size: 15px; }
 .card ul li::before { content: "·"; color: var(--gold-deep); font-weight: 700; margin-right: 8px; }
@@ -306,7 +310,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
     <div class="cards">
       <article class="card">
         <span class="ribbon">Eismobil</span>
-        <figure><img src="bilder/eismobil.png" alt="Eismobil" loading="lazy"></figure>
+        <figure class="hover-video"><img src="bilder/eismobil.png" alt="Eismobil" loading="lazy"><video src="bilder/eismobil.mp4" muted playsinline preload="metadata" aria-hidden="true"></video></figure>
         <p>Großer Auftritt, großes Eisglück! Unser Eismobil bringt handgemachtes Eis direkt zu deiner Feier.</p>
         <ul><li>Ideal für Events ab ca. 150 Personen</li><li>Bis zu 3 Stunden Einsatz mit Personal</li><li>Waffeln und Servietten inklusive</li></ul>
         <div class="foot"><div class="price">Individuelles Angebot auf Anfrage</div><a class="btn btn-line" href="#anfrage" data-paket="Eismobil">Anfragen</a></div>
@@ -438,6 +442,35 @@ document.querySelectorAll('#nav a').forEach(a => a.addEventListener('click', () 
 
 // "Anfragen" auf einer Kachel wählt das Angebot im Formular vor
 document.querySelectorAll('[data-paket]').forEach(b => b.addEventListener('click', () => { document.getElementById('f-paket').value = b.dataset.paket; }));
+
+// Eismobil-Video: Maus drauf = Video startet; ist es fertig und die Maus bleibt drauf,
+// startet es nach einer kurzen Pause wieder von vorne. Am Handy startet es beim Hinscrollen.
+const VIDEO_PAUSE_MS = 2500;
+document.querySelectorAll('.hover-video').forEach(fig => {
+  const v = fig.querySelector('video');
+  let active = false, timer = null;
+  const start = () => {
+    if (active) return;
+    active = true; clearTimeout(timer);
+    v.currentTime = 0;
+    v.play().then(() => { if (active) fig.classList.add('is-playing'); }).catch(() => { active = false; });
+  };
+  const stop = () => {
+    active = false; clearTimeout(timer);
+    fig.classList.remove('is-playing');
+    setTimeout(() => { if (!active) { v.pause(); v.currentTime = 0; } }, 350);
+  };
+  v.addEventListener('ended', () => {
+    if (!active) return;
+    timer = setTimeout(() => { if (active) { v.currentTime = 0; v.play().catch(() => {}); } }, VIDEO_PAUSE_MS);
+  });
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    fig.addEventListener('mouseenter', start);
+    fig.addEventListener('mouseleave', stop);
+  } else if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting ? start() : stop()), { threshold: 0.6 }).observe(fig);
+  }
+});
 
 // Frühestes Datum: morgen
 const d = new Date(); d.setDate(d.getDate() + 1);
