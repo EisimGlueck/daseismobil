@@ -155,6 +155,7 @@ p { margin: 0; }
 .card figure.hover-video { position: relative; }
 .hover-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--video-pos, center); border-radius: 8px; background: #fff; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
 .hover-video.is-playing video { opacity: 1; }
+.hover-video.is-narrow video { left: 50%; width: auto; max-width: 100%; transform: translateX(-50%); object-fit: contain; }
 .card p { color: var(--ink-soft); font-size: 15.5px; }
 .card ul { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 6px; font-size: 15px; }
 .card ul li::before { content: "·"; color: var(--gold-deep); font-weight: 700; margin-right: 8px; }
@@ -317,7 +318,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       </article>
       <article class="card">
         <span class="ribbon">Eis-Cycle</span>
-        <figure class="hover-video"><img src="bilder/eiscycle.png" alt="Eis-Cycle" loading="lazy"><video src="bilder/eiscycle.mp4" muted playsinline preload="metadata" aria-hidden="true"></video></figure>
+        <figure class="hover-video is-narrow"><img src="bilder/eiscycle.png" alt="Eis-Cycle" loading="lazy"><video src="bilder/eiscycle.mp4" muted playsinline preload="metadata" aria-hidden="true"></video></figure>
         <p>Klein, charmant und voller Eisglück! Unser Eis-Cycle kommt fast überall hin und versorgt deine Gäste ganz ohne Steckdose.</p>
         <ul><li>Ideal für Parks, Höfe und Firmengelände</li><li>Bis zu 8 Stunden autark</li><li>Glücksbecher in vielen Sorten</li></ul>
         <div class="foot"><div class="price">Individuelles Angebot auf Anfrage</div><a class="btn btn-line" href="#anfrage" data-paket="Eis-Cycle">Anfragen</a></div>
