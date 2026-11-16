@@ -154,7 +154,9 @@ p { margin: 0; }
 /* Eismobil-Kachel: Video legt sich beim Darüberfahren über die Illustration */
 .card figure.hover-video { position: relative; }
 .hover-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--video-pos, center); border-radius: 8px; background: #fff; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+.hover-video img { transition: opacity .35s ease; }
 .hover-video.is-playing video { opacity: 1; }
+.hover-video.is-narrow.is-playing img { opacity: 0; }
 .hover-video.is-narrow video { left: 50%; width: auto; max-width: 100%; transform: translateX(-50%); object-fit: contain; }
 .card p { color: var(--ink-soft); font-size: 15.5px; }
 .card ul { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 6px; font-size: 15px; }
@@ -346,7 +348,7 @@ footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
       </article>
       <article class="card">
         <span class="ribbon">Glückszeit am Strand</span>
-        <figure><img src="bilder/glueckszeit.png" alt="Glückszeit am Strand Paket mit Liegestühlen, Sonnenschirm und Glückstonne" loading="lazy"></figure>
+        <figure class="hover-video is-narrow"><img src="bilder/glueckszeit.png" alt="Glückszeit am Strand Paket mit Liegestühlen, Sonnenschirm und Glückstonne" loading="lazy"><video src="bilder/glueckszeit.mp4" muted playsinline preload="metadata" aria-hidden="true"></video></figure>
         <p>Ein bisschen Urlaub für dein Event! Mit Liegestühlen, Sonnenschirm und Glückstonne wird aus jeder Feier eine kleine Auszeit.</p>
         <ul><li>Rundum-sorglos-Paket</li><li>Liegestühle und Sonnenschirm</li><li>Glückstonne inklusive</li></ul>
         <div class="foot"><div class="price">Individuelles Angebot auf Anfrage</div><a class="btn btn-line" href="#anfrage" data-paket="Glückszeit am Strand">Anfragen</a></div>
